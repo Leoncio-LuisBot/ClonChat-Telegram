@@ -1,0 +1,23 @@
+#@title *Start*
+from os.path import (
+  join,exists,split
+)
+from subprocess import run
+from google.colab import drive
+
+drive.mount('/content/drive/')
+dir="/content/drive/MyDrive/Clonechat-Telegram-Colab"
+
+cmd1="add-apt-repository ppa:deadsnakes/ppa;apt-get update;apt-get install python3.11;"+\
+"apt-get install python3.11-dev;wget https://bootstrap.pypa.io/get-pip.py && python3.11 get-pip.py"
+cmd2='git clone https://github.com/Leoncio-LuisBot/ClonChat-Telegram'
+cmd3='python3.11 -m pip install tgcrypto https://github.com/Drrivao/pyrogram/archive/refs/heads/master.zip'
+cmd4='mv Clonechat-Telegram-Colab /content/drive/MyDrive'
+
+run(cmd1,shell=True)
+if not exists(dir):
+  for cmd in [cmd2,cmd3,cmd4]:
+    run(cmd,shell=True)
+else:run(cmd3,shell=True)
+
+%cd $dir
